@@ -11,8 +11,8 @@ All notable changes to People Search are documented here.
   authoritative CDN (`https://cdn.sheetjs.com`), resolving two security advisories:
   - GHSA-5pgg-2g8v-p4x9 — Regular Expression Denial of Service (ReDoS) in SheetJS
   - GHSA-4r6h-8v6p-xvw6 — Prototype Pollution in SheetJS
-  The API is fully backwards-compatible; no source changes were required.
-  Run `npm install` after pulling this change to apply the fix.
+- The API is fully backwards-compatible; no source changes were required.
+- Run `npm install` after pulling this change to apply the fix.
 
 ---
 
