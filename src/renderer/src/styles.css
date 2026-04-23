@@ -33,6 +33,18 @@ button {
   padding: 1.5rem;
 }
 
+.app-section {
+  display: block;
+}
+
+.app-shell.search-maximized {
+  min-height: 100vh;
+}
+
+.app-shell.search-maximized .app-section {
+  display: none;
+}
+
 .hero-panel,
 .import-panel,
 .roadmap-panel {
@@ -318,6 +330,14 @@ button {
   color: #fffaf3;
 }
 
+.search-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 .search-summary-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -329,6 +349,14 @@ button {
   display: grid;
   gap: 1rem;
   margin-top: 1.5rem;
+}
+
+.app-shell.search-maximized .search-workspace-panel {
+  min-height: calc(100vh - 3rem);
+}
+
+.app-shell.search-maximized .data-body {
+  max-height: min(68vh, 56rem);
 }
 
 .filters-grid {
@@ -502,7 +530,8 @@ button {
   }
 
   .action-row,
-  .panel-header {
+  .panel-header,
+  .search-header-actions {
     flex-direction: column;
     align-items: stretch;
   }

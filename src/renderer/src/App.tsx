@@ -49,6 +49,7 @@ export default function App(): JSX.Element {
   const [message, setMessage] = useState('Creating a temporary workspace for this app session.');
   const [bootstrap, setBootstrap] = useState<SearchBootstrap | null>(null);
   const [activeView, setActiveView] = useState<ActiveView>('people');
+  const [isSearchMaximized, setIsSearchMaximized] = useState(false);
   const [selectedPerson, setSelectedPerson] = useState<PersonSearchResult | null>(null);
   const [linkedDonations, setLinkedDonations] = useState<DonationSearchResult[]>([]);
 
@@ -59,6 +60,7 @@ export default function App(): JSX.Element {
     }
 
     setBootstrap(null);
+    setIsSearchMaximized(false);
     setSelectedPerson(null);
     setLinkedDonations([]);
   }, [session?.id, session?.dataState]);
@@ -196,9 +198,11 @@ export default function App(): JSX.Element {
     setActiveView('combined');
   }
 
+  const isSearchReady = session?.dataState === 'ready' && Boolean(bootstrap);
+
   return (
-    <main className="app-shell">
-      <section className="hero-panel">
+    <main className={`app-shell ${isSearchMaximized ? 'search-maximized' : ''}`}>
+      <section className="hero-panel app-section">
         <div className="hero-copy">
           <p className="eyebrow">Implementation Slice 1</p>
           <h1>People Search desktop shell</h1>
@@ -304,33 +308,47 @@ export default function App(): JSX.Element {
         </aside>
       </section>
 
-      <ImportWizard
-        session={session}
-        onChooseImportSource={handleChooseImportSource}
-        onImported={handleImported}
-        onStatusChange={setMessage}
-      />
+      <div className="app-section">
+        <ImportWizard
+          session={session}
+          onChooseImportSource={handleChooseImportSource}
+          onImported={handleImported}
+          onStatusChange={setMessage}
+        />
+      </div>
 
-      {session?.dataState === 'ready' && bootstrap ? (
-        <section className="roadmap-panel">
+      {isSearchReady && bootstrap ? (
+        <section className="roadmap-panel search-workspace-panel">
           <div className="panel-header compact">
             <div>
               <p className="eyebrow">Phase 4</p>
               <h2>Search Workspace</h2>
             </div>
-            <div className="segmented-control">
-              {(['people', 'donations', 'combined'] as ActiveView[]).map((view) => (
-                <button
-                  className={`segment-button ${activeView === view ? 'active' : ''}`}
-                  key={view}
-                  type="button"
-                  onClick={() => {
-                    setActiveView(view);
-                  }}
-                >
-                  {view === 'people' ? 'People' : view === 'donations' ? 'Donations' : 'Combined'}
-                </button>
-              ))}
+            <div className="search-header-actions">
+              <div className="segmented-control">
+                {(['people', 'donations', 'combined'] as ActiveView[]).map((view) => (
+                  <button
+                    className={`segment-button ${activeView === view ? 'active' : ''}`}
+                    key={view}
+                    type="button"
+                    onClick={() => {
+                      setActiveView(view);
+                    }}
+                  >
+                    {view === 'people' ? 'People' : view === 'donations' ? 'Donations' : 'Combined'}
+                  </button>
+                ))}
+              </div>
+              <button
+                aria-pressed={isSearchMaximized}
+                className="secondary-button"
+                type="button"
+                onClick={() => {
+                  setIsSearchMaximized((currentValue) => !currentValue);
+                }}
+              >
+                {isSearchMaximized ? 'Restore Layout' : 'Maximise Search'}
+              </button>
             </div>
           </div>
 
