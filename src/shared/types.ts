@@ -33,8 +33,8 @@ export type DatasetKey = (typeof DATASET_KEYS)[number];
 export type LinkBasis = 'none' | 'email' | 'reference' | 'ambiguous';
 
 export const DATASET_LABELS: Record<DatasetKey, string> = {
-  people: 'People',
-  donations: 'Donations'
+  people: 'Young People',
+  donations: 'Youth Subs'
 };
 
 export const FIELD_LABELS: Record<PeopleFieldKey | DonationFieldKey, string> = {

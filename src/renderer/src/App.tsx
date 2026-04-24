@@ -19,16 +19,16 @@ type ActiveView = 'people' | 'donations' | 'combined';
 
 const workstreams = [
   {
-    title: 'People View',
-    description: 'Name-first search, linked filters, and table virtualization will attach here next.'
+    title: 'Young People',
+    description: 'Search by name, role, group, or location.'
   },
   {
-    title: 'Donations View',
-    description: 'Reference, donor, and email search will sit on the same indexed session workspace.'
+    title: 'Youth Subs',
+    description: 'Search by donor, reference, or email.'
   },
   {
-    title: 'Combined View',
-    description: 'Cross-sheet linking will surface person and donation records side-by-side with match reasons.'
+    title: 'Combined',
+    description: 'View linked Young People and Youth Subs records together.'
   }
 ];
 
@@ -204,11 +204,9 @@ export default function App(): JSX.Element {
     <main className={`app-shell ${isSearchMaximized ? 'search-maximized' : ''}`}>
       <section className="hero-panel app-section">
         <div className="hero-copy">
-          <p className="eyebrow">Implementation Slice 1</p>
-          <h1>People Search desktop shell</h1>
+          <h1>PeopleSearch</h1>
           <p className="hero-text">
-            The app now boots with an isolated local session workspace, supports separate People
-            and Donations source files, and keeps import and search data fully local.
+            Search Young People and Youth Subs data from your spreadsheets.
           </p>
         </div>
 
@@ -240,11 +238,11 @@ export default function App(): JSX.Element {
               </p>
             </div>
             <div>
-              <span className="field-label">People Source</span>
+              <span className="field-label">Young People File</span>
               <p className="field-value">{formatSourceName(session, 'people')}</p>
             </div>
             <div>
-              <span className="field-label">Donations Source</span>
+              <span className="field-label">Youth Subs File</span>
               <p className="field-value">{formatSourceName(session, 'donations')}</p>
             </div>
             <div>
@@ -262,7 +260,7 @@ export default function App(): JSX.Element {
                 void handleChooseImportSource('people');
               }}
             >
-              Choose People File
+              Select Young People File
             </button>
             <button
               className="secondary-button"
@@ -272,7 +270,7 @@ export default function App(): JSX.Element {
                 void handleChooseImportSource('donations');
               }}
             >
-              Choose Donations File
+              Select Youth Subs File
             </button>
             <button
               className="secondary-button"
@@ -335,7 +333,7 @@ export default function App(): JSX.Element {
                       setActiveView(view);
                     }}
                   >
-                    {view === 'people' ? 'People' : view === 'donations' ? 'Donations' : 'Combined'}
+                    {view === 'people' ? 'Young People' : view === 'donations' ? 'Youth Subs' : 'Combined'}
                   </button>
                 ))}
               </div>
@@ -354,15 +352,15 @@ export default function App(): JSX.Element {
 
           <div className="search-summary-grid">
             <article className="workstream-card">
-              <h3>People indexed</h3>
+              <h3>Young People indexed</h3>
               <p>{bootstrap.peopleCount}</p>
             </article>
             <article className="workstream-card">
-              <h3>Donations indexed</h3>
+              <h3>Youth Subs indexed</h3>
               <p>{bootstrap.donationCount}</p>
             </article>
             <article className="workstream-card">
-              <h3>Linked donations</h3>
+              <h3>Linked Youth Subs</h3>
               <p>{bootstrap.summary?.linkedDonationCount ?? 0}</p>
             </article>
           </div>
@@ -389,7 +387,7 @@ export default function App(): JSX.Element {
       ) : (
         <section className="roadmap-panel">
           <div className="panel-header">
-            <p className="eyebrow">Next Up</p>
+            <p className="eyebrow">Search &amp; Views</p>
             <h2>Import, search, and linked views</h2>
           </div>
           <div className="workstream-grid">

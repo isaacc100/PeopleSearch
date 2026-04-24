@@ -4,7 +4,27 @@ All notable changes to People Search are documented here.
 
 ---
 
-## [1.0.1] - 2026-04-23
+## [1.1.0] - 2026-04-24
+
+### Changed
+- Updated app title to **PeopleSearch** and subtitle to reflect the actual dataset names.
+- Renamed **Import Wizard** section to **Load Your Data** with updated instructional copy.
+- Renamed source card labels: People Source → Young People File, Donations Source → Youth Subs File.
+- Renamed status labels: Inspection → Field Mapping, Imported rows → Import Status.
+- Updated "No file selected" placeholder to **No file loaded** and "No imported data yet" to **No data imported**.
+- Renamed buttons: Choose People File → Select Young People File, Choose Donations File → Select Youth Subs File.
+- Updated segmented control and search workspace stats to use **Young People** / **Youth Subs**.
+- Renamed views section eyebrow from **Next Up** to **Search & Views**.
+- Updated view cards (Young People, Youth Subs, Combined) with user-facing descriptions.
+- Updated `DATASET_LABELS` in shared types to "Young People" and "Youth Subs".
+
+### Added
+- **How it works** instructional block below the import section with four sequential steps.
+- Visible note: **Both files must be loaded before importing.**
+
+---
+
+
 
 ### Security
 - Replaced `xlsx` npm package (0.18.5) with SheetJS Community Edition 0.20.3 from the

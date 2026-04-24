@@ -153,41 +153,42 @@ export default function ImportWizard({
     <section className="import-panel">
       <div className="panel-header">
         <div>
-          <p className="eyebrow">Phase 2</p>
-          <h2>Import Wizard</h2>
+          <h2>Load Your Data</h2>
         </div>
       </div>
 
       <p className="helper-copy">
-        Choose one file for People and one file for Donations. You can pick the same workbook twice
-        or use separate `.xlsx`, `.xls`, `.xlsm`, `.xlsb`, `.csv`, `.tsv`, `.txt`, or `.ods`
-        files.
+        Select your Young People and Youth Subs spreadsheets to begin.
       </p>
 
       <div className="import-status-grid">
         <div className="status-tile">
-          <span className="field-label">People Source</span>
-          <p className="field-value">{peopleSourceName ?? 'No file selected'}</p>
+          <span className="field-label">Young People File</span>
+          <p className="field-value">{peopleSourceName ?? 'No file loaded'}</p>
         </div>
         <div className="status-tile">
-          <span className="field-label">Donations Source</span>
-          <p className="field-value">{donationSourceName ?? 'No file selected'}</p>
+          <span className="field-label">Youth Subs File</span>
+          <p className="field-value">{donationSourceName ?? 'No file loaded'}</p>
         </div>
         <div className="status-tile">
-          <span className="field-label">Inspection</span>
+          <span className="field-label">Field Mapping</span>
           <p className="field-value">
-            {isInspecting ? 'Inspecting source files…' : 'Ready to map fields'}
+            {isInspecting ? 'Inspecting source files…' : 'Load files to review and map fields'}
           </p>
         </div>
         <div className="status-tile">
-          <span className="field-label">Imported rows</span>
+          <span className="field-label">Import Status</span>
           <p className="field-value">
             {session?.summary
               ? `${session.summary.peopleCount} people, ${session.summary.donationCount} donations`
-              : 'No imported data yet'}
+              : 'No data imported'}
           </p>
         </div>
       </div>
+
+      <p className="helper-copy">
+        <strong>Both files must be loaded before importing.</strong>
+      </p>
 
       <div className="action-row import-action-row">
         <button
@@ -198,7 +199,7 @@ export default function ImportWizard({
             void onChooseImportSource('people');
           }}
         >
-          {peopleSourceName ? 'Choose Different People File' : 'Choose People File'}
+          {peopleSourceName ? 'Select Different Young People File' : 'Select Young People File'}
         </button>
         <button
           className="secondary-button"
@@ -208,8 +209,18 @@ export default function ImportWizard({
             void onChooseImportSource('donations');
           }}
         >
-          {donationSourceName ? 'Choose Different Donations File' : 'Choose Donations File'}
+          {donationSourceName ? 'Select Different Youth Subs File' : 'Select Youth Subs File'}
         </button>
+      </div>
+
+      <div className="how-it-works">
+        <h3>How it works</h3>
+        <ol>
+          <li>Select your Young People and Youth Subs files</li>
+          <li>Check the detected sheet and headers</li>
+          <li>Adjust mappings if needed</li>
+          <li>Import and start searching</li>
+        </ol>
       </div>
 
       {peopleInspection || donationInspection ? (
